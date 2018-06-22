@@ -24,7 +24,7 @@ def get_chart(date, region='en', freq='daily', chart='top200'):
     url = f'https://spotifycharts.com/{chart}/{region}/{freq}/{date}/download'
     data = io.StringIO(requests.get(url).text)
     try:
-        df = pd.read_csv(data)
+        df = pd.read_csv(data,skiprows=1)
     except pd.errors.ParserError:
         df = None
         print(data)
